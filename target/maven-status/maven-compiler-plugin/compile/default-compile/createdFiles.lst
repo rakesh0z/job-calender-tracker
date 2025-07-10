@@ -1,0 +1,4 @@
+com\rakesh\jobtracker\backend\repository\JobRepository.class
+com\rakesh\jobtracker\backend\controller\JobController.class
+com\rakesh\jobtracker\backend\model\Job.class
+com\rakesh\jobtracker\backend\BackendApplication.class
