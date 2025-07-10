@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Calendar Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="p-4 bg-light">
+
+  <div class="container">
+    <h2 class="mb-4 text-center">🗓️ Job Calendar Tracker</h2>
+
+    <!-- Job List Table -->
+    <table class="table table-bordered table-striped" id="jobsTable">
+      <thead class="table-dark">
+        <tr>
+          <th>Company</th>
+          <th>Role</th>
+          <th>Apply Date</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody id="jobList"></tbody>
+    </table>
+
+    <!-- Add Job Form -->
+    <h4 class="mt-5">Add New Job</h4>
+    <form id="jobForm">
+      <div class="mb-3">
+        <input type="text" class="form-control" id="company" placeholder="Company" required>
+      </div>
+      <div class="mb-3">
+        <input type="text" class="form-control" id="role" placeholder="Role" required>
+      </div>
+      <div class="mb-3">
+        <input type="date" class="form-control" id="applyDate" required>
+      </div>
+      <div class="mb-3">
+        <input type="url" class="form-control" id="link" placeholder="Application Link" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Add Job</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
