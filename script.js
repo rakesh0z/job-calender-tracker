@@ -1,14 +1,14 @@
 const apiURL = "https://job-calender-tracker.onrender.com/api/jobs";
-const adminPassword = "admin123";
+// const adminPassword = "admin123";
 
-document.getElementById("loginBtn").onclick = () => {
-  const pass = prompt("Enter admin password:");
-  if (pass === adminPassword) {
-    document.getElementById("adminForm").classList.remove("hidden");
-  } else {
-    alert("Access denied!");
-  }
-};
+// document.getElementById("loginBtn").onclick = () => {
+//   const pass = prompt("Enter admin password:");
+//   if (pass === adminPassword) {
+//     document.getElementById("adminForm").classList.remove("hidden");
+//   } else {
+//     alert("Access denied!");
+//   }
+// };
 
 function fetchJobs() {
   fetch(apiURL)
