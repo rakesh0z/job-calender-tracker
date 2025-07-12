@@ -1,37 +1,40 @@
-const apiURL ="https://job-calendar-backend.onrender.com/api/jobs";
+const apiURL = "https://job-calender-tracker.onrender.com/api/jobs";
+const adminPassword = "admin123";
 
+document.getElementById("loginBtn").onclick = () => {
+  const pass = prompt("Enter admin password:");
+  if (pass === adminPassword) {
+    document.getElementById("adminForm").classList.remove("hidden");
+  } else {
+    alert("Access denied!");
+  }
+};
 
-// Load jobs on page load
-window.onload = loadJobs;
-
-function loadJobs() {
+function fetchJobs() {
   fetch(apiURL)
-    .then(response => response.json())
+    .then(res => res.json())
     .then(data => {
-      const table = document.getElementById("jobList");
-      table.innerHTML = "";
-
+      const tbody = document.querySelector("#jobTable tbody");
+      tbody.innerHTML = "";
       data.forEach(job => {
         const row = `<tr>
           <td>${job.company}</td>
           <td>${job.role}</td>
           <td>${job.applyDate}</td>
-          <td><a href="${job.link}" target="_blank">🔗</a></td>
+          <td>${job.status || "Open"}</td>
+          <td><button onclick="deleteJob(${job.id})">Delete</button></td>
         </tr>`;
-        table.innerHTML += row;
+        tbody.innerHTML += row;
       });
     });
 }
 
-// Add job
-document.getElementById("jobForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-
+function addJob() {
   const job = {
     company: document.getElementById("company").value,
     role: document.getElementById("role").value,
     applyDate: document.getElementById("applyDate").value,
-    link: document.getElementById("link").value
+    link: document.getElementById("jobURL").value
   };
 
   fetch(apiURL, {
@@ -39,9 +42,15 @@ document.getElementById("jobForm").addEventListener("submit", function (e) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(job)
   })
-    .then(res => res.json())
-    .then(() => {
-      this.reset(); // clear form
-      loadJobs();   // reload list
-    });
-});
+  .then(() => {
+    alert("Job added!");
+    fetchJobs();
+  });
+}
+
+function deleteJob(id) {
+  fetch(`${apiURL}/${id}`, { method: "DELETE" })
+    .then(() => fetchJobs());
+}
+
+fetchJobs();
