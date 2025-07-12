@@ -4,8 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Job Calendar Tracker</title>
+
+  <!-- FullCalendar CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <header>
     <h1>Job Calendar Tracker</h1>
@@ -26,7 +31,7 @@
     <!-- Centered Calendar -->
     <section id="calendarSection">
       <h2>Calendar</h2>
-      <div id="calendarBox">📅 Calendar Here</div>
+      <div id="calendar"></div>
     </section>
 
     <!-- Job Table -->
@@ -47,7 +52,13 @@
     </section>
   </main>
 
+  
+
+    <!-- FullCalendar JS -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
   <script src="script.js"></script>
+</body>
+
 </body>
 </html>
 

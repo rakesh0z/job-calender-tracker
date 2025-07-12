@@ -14,8 +14,11 @@ function fetchJobs() {
   fetch(apiURL)
     .then(res => res.json())
     .then(data => {
+      // Populate job table
       const tbody = document.querySelector("#jobTable tbody");
       tbody.innerHTML = "";
+      const calendarEvents = [];
+
       data.forEach(job => {
         const row = `<tr>
           <td>${job.company}</td>
@@ -25,9 +28,32 @@ function fetchJobs() {
           <td><button onclick="deleteJob(${job.id})">Delete</button></td>
         </tr>`;
         tbody.innerHTML += row;
+
+        // Add event to calendar
+        calendarEvents.push({
+          title: `${job.company} (${job.role})`,
+          date: job.applyDate
+        });
       });
+
+      // Load calendar
+      renderCalendar(calendarEvents);
     });
 }
+
+function renderCalendar(events) {
+  const calendarEl = document.getElementById('calendar');
+  calendarEl.innerHTML = ''; // clear previous render
+
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    height: 500,
+    events: events
+  });
+
+  calendar.render();
+}
+
 
 function addJob() {
   const job = {
